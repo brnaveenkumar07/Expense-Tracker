@@ -47,7 +47,7 @@ exports.deleteIncome = async (req, res) => {
         await Income.findByIdAndDelete(req.params.id);
         res.json({ message: "Income deleted successfully" });
     } catch (error) {
-        res.status(500).json({ message: "Srever Error" });
+        res.status(500).json({ message: "Server Error" });
     }
 }
 
@@ -69,6 +69,7 @@ exports.downloadIncomeExcel = async (req, res) => {
         const ws = writeXLSX.utils.json_to_sheet(data);
         writeXLSX.utils.book_append_sheet(wb, ws, "Income");
         writeXLSX.writeFile(wb, 'income_details.xlsx');
+        res.download('income_details.xlsx');
     } catch (error) {
         res.status(500).json({ message: "Server Error" });
     }
