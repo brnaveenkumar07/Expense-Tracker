@@ -9,7 +9,6 @@ exports.getDashboardData = async (req, res) => {
         const userObjectId = new Types.ObjectId(String(userId));
 
         // Fetch total income and expenses
-
         const totalIncome = await Income.aggregate([
             { $match: { userId: userObjectId } },
             { $group: { _id: null, total: { $sum: "$amount" } } },
