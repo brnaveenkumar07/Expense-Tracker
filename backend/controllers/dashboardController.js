@@ -60,7 +60,7 @@ exports.getDashboardData = async (req, res) => {
                     type: "expense",
                 })
             ),
-        ].sort((a, b) => b.date); // Sort latest first
+        ].sort((a, b) => b.date- a.date); // Sort latest first
 
         // Final Response
         res.json({
